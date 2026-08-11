@@ -1,0 +1,48 @@
+{
+  "short_name": "AquaServe",
+  "name": "AquaServe — Water Purifier Services",
+  "description": "Book RO installation, filter change, repair, AMC and general service from trusted technicians.",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0B6E68",
+  "background_color": "#0B6E68",
+  "scope": "/",
+  "lang": "en-IN",
+  "categories": ["business", "utilities", "productivity"],
+  "shortcuts": [
+    {
+      "name": "My Bookings",
+      "short_name": "Bookings",
+      "url": "/bookings",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Book a Service",
+      "short_name": "Book",
+      "url": "/home",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "prefer_related_applications": false
+}

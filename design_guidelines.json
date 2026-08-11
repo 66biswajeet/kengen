@@ -1,0 +1,147 @@
+﻿{
+  "theme": "light",
+  "typography": {
+    "primary": "Plus Jakarta Sans, sans-serif",
+    "secondary": "Plus Jakarta Sans, sans-serif",
+    "hierarchy": {
+      "h1": "text-3xl md:text-4xl font-semibold tracking-tight text-[#1A1F2E]",
+      "h2": "text-2xl md:text-3xl font-semibold tracking-tight text-[#1A1F2E]",
+      "h3": "text-xl font-semibold text-[#1A1F2E]",
+      "body": "text-base font-normal text-[#75777D] leading-relaxed",
+      "small": "text-sm text-[#75777D]",
+      "label": "text-xs font-semibold uppercase tracking-[0.2em] text-[#0C54A4]"
+    }
+  },
+  "colors": {
+    "primary": {
+      "DEFAULT": "#0C54A4",
+      "light": "#4CA3DD",
+      "dark": "#083A75",
+      "surface": "#E8F1F9"
+    },
+    "accent": {
+      "DEFAULT": "#8D3E00",
+      "light": "#B56124",
+      "dark": "#6B2F00",
+      "surface": "#F5E6D9"
+    },
+    "background": {
+      "DEFAULT": "#F4F7FA",
+      "surface": "#FFFFFF"
+    },
+    "text": {
+      "primary": "#1A1F2E",
+      "secondary": "#75777D"
+    },
+    "status": {
+      "success": "#2E9E6D",
+      "error": "#E5484D",
+      "warning": "#8D3E00"
+    }
+  },
+  "visual_enhancers": {
+    "shadows": {
+      "card": "shadow-[0_8px_24px_rgba(11,110,104,0.06)]",
+      "floating": "shadow-[0_12px_40px_rgba(0,0,0,0.12)]",
+      "button": "shadow-[0_4px_12px_rgba(11,110,104,0.2)]"
+    },
+    "borders": {
+      "radius": {
+        "card": "rounded-[20px]",
+        "button": "rounded-xl",
+        "badge": "rounded-full"
+      },
+      "style": "border border-gray-100/60"
+    },
+    "effects": {
+      "glass": "backdrop-blur-xl bg-white/85 border-b border-white/20",
+      "glass_dark": "backdrop-blur-xl bg-[#0C54A4]/90"
+    }
+  },
+  "layouts": {
+    "app_container": "w-full max-w-md mx-auto min-h-screen bg-[#F4F7FA] relative pb-28 shadow-[0_0_40px_rgba(0,0,0,0.05)] overflow-x-hidden",
+    "spacing": {
+      "section": "py-8 px-6",
+      "element_gap": "gap-5",
+      "internal_pad": "p-5"
+    },
+    "bottom_nav": "fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white/90 backdrop-blur-xl border-t border-gray-100 flex justify-around items-center px-6 py-4 z-50 rounded-t-[24px] shadow-[0_-8px_30px_rgba(0,0,0,0.04)]",
+    "header_sticky": "sticky top-0 z-40 backdrop-blur-xl bg-white/85 border-b border-gray-100/50 px-6 py-4 flex items-center justify-between"
+  },
+  "components": {
+    "button": {
+      "primary": "w-full bg-[#0C54A4] text-white rounded-xl py-4 font-semibold flex items-center justify-center transition-transform active:scale-[0.98] shadow-[0_4px_12px_rgba(11,110,104,0.2)] hover:bg-[#083A75]",
+      "secondary": "w-full bg-white text-[#0C54A4] border-2 border-[#E8F1F9] rounded-xl py-3.5 font-semibold flex items-center justify-center transition-all active:scale-[0.98] hover:border-[#0C54A4] hover:bg-[#E8F1F9]/30",
+      "accent": "w-full bg-[#8D3E00] text-white rounded-xl py-4 font-semibold flex items-center justify-center transition-transform active:scale-[0.98] shadow-[0_4px_12px_rgba(245,166,35,0.2)]"
+    },
+    "card": {
+      "service": "bg-white p-5 rounded-[20px] shadow-[0_8px_24px_rgba(11,110,104,0.06)] border border-gray-50 flex flex-col gap-4 relative overflow-hidden transition-all hover:shadow-[0_12px_32px_rgba(11,110,104,0.1)]",
+      "offer_carousel": "bg-gradient-to-br from-[#0C54A4] to-[#4CA3DD] p-6 rounded-[24px] text-white overflow-hidden relative min-w-[280px] snap-center",
+      "booking_widget": "bg-white p-5 rounded-[20px] border-l-4 border-[#8D3E00] shadow-[0_8px_24px_rgba(11,110,104,0.06)]"
+    },
+    "stepper": {
+      "container": "flex flex-col gap-8 relative before:content-[''] before:absolute before:left-[15px] before:top-3 before:bottom-3 before:w-[2px] before:bg-gray-100",
+      "item_active": "relative z-10 flex gap-5 items-start",
+      "item_inactive": "relative z-10 flex gap-5 items-start opacity-50",
+      "dot_active": "w-8 h-8 rounded-full bg-[#0C54A4] border-[6px] border-white shadow-sm flex items-center justify-center ring-1 ring-[#0C54A4]/20",
+      "dot_inactive": "w-8 h-8 rounded-full bg-gray-200 border-[6px] border-white ring-1 ring-gray-100",
+      "dot_current": "w-8 h-8 rounded-full bg-[#8D3E00] border-[6px] border-white shadow-sm ring-1 ring-[#8D3E00]/20 animate-pulse"
+    },
+    "otp_display": "text-[2.5rem] font-bold tracking-[0.3em] text-[#0C54A4] bg-[#E8F1F9] py-6 px-10 rounded-[24px] inline-block border border-[#0C54A4]/20 text-center w-full",
+    "chip": "px-4 py-2 rounded-full bg-[#E8F1F9] text-[#0C54A4] text-sm font-medium border border-[#0C54A4]/10"
+  },
+  "motion": {
+    "transitions": "transition-all duration-300 ease-out",
+    "page_enter": "animate-in slide-in-from-bottom-8 fade-in duration-400 ease-out",
+    "sheet_up": "animate-in slide-in-from-bottom-full duration-300 ease-out",
+    "micro": "active:scale-[0.98] transition-transform"
+  },
+  "icons": {
+    "library": "lucide-react",
+    "style": "stroke-[2px]",
+    "active": "fill-current text-[#0C54A4]"
+  },
+  "image_urls": {
+    "hero_banner": {
+      "url": "https://images.unsplash.com/photo-1556010656-e60700d4c0d5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwyfHxjbGVhbiUyMHdhdGVyJTIwZHJvcGxldHMlMjBtYWNyb3xlbnwwfHx8fDE3ODM4ODE3NTN8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Clean water droplet rippling, representing pure water.",
+      "category": "hero"
+    },
+    "service_repair": {
+      "url": "https://images.unsplash.com/photo-1581092335397-9583eb92d232?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODh8MHwxfHNlYXJjaHwzfHx0ZWNobmljaWFuJTIwcmVwYWlyaW5nJTIwbWFjaGluZXJ5fGVufDB8fHx8MTc4Mzg4MTc1M3ww&ixlib=rb-4.1.0&q=85",
+      "description": "Technician working on a machine, good for repair category.",
+      "category": "category_thumbnail"
+    },
+    "technician_avatar": {
+      "url": "https://images.unsplash.com/photo-1732395805034-e0bf859665e5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODF8MHwxfHNlYXJjaHw0fHxmcmllbmRseSUyMG1hbGUlMjB0ZWNobmljaWFuJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzgzODgxNzUzfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Friendly technician looking at camera.",
+      "category": "avatar"
+    },
+    "service_installation": {
+      "url": "https://images.unsplash.com/photo-1534616042650-80f5c9b61f09?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwzfHxnbGFzcyUyMG9mJTIwY2xlYW4lMjB3YXRlcnxlbnwwfHx8fDE3ODM4ODE3NTJ8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Glass of clean water, representing the end goal.",
+      "category": "category_thumbnail"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Build a PWA-style mobile-first layout. Use max-w-md mx-auto for the main container (`app_container`) to constrain the width on desktop, simulating a native mobile app experience.",
+    "Import Google Fonts 'Plus Jakarta Sans' (for headings) and 'Plus Jakarta Sans' (for body) in index.html.",
+    "Do NOT build a generic 'Urban Company' clone. Use the provided Deep Teal (#0C54A4) and Warm Amber (#8D3E00) to create an organic, premium, fresh feel.",
+    "Component logic: Use React state to mock the flow (Splash -> Role Select -> OTP Login -> Home -> Service List -> Checkout -> Tracking).",
+    "Ensure the booking tracking screen uses the detailed vertical stepper defined in the components section.",
+    "Mock data for services should include: Installation, Filter Change, Repair, AMC.",
+    "Add 'data-testid' to ALL interactive elements (buttons, inputs, tabs, bottom nav items, category cards).",
+    "Use standard .js files for React components. Do not use .tsx.",
+    "Use Lucide-React for icons. Keep stroke-width at 2px. For the active state in Bottom Nav, apply fill-current."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Do not converge toward generic outputs. Use layered design elements with z-index hierarchy and generous white space.",
+    "Use glass-morphism effects with backdrop filters (e.g. backdrop-blur-xl bg-white/85) for sticky headers and the bottom nav.",
+    "Do NOT apply universal transitions (e.g., transition: all). Target specific properties like transition-transform or transition-opacity.",
+    "Do NOT center-align the app container content by default. Left-align textual content for natural reading flow.",
+    "Always use modern button styles (rounded-xl) with interaction animations (active:scale-[0.98]).",
+    "Use 2-3x more spacing than feels comfortable. Padding p-5 or p-6 is standard for cards and sections.",
+    "NEVER use placeholder image URLs like via.placeholder.com. ONLY use the provided image URLs from the image_urls block.",
+    "Use `sonner` for toasts if notifications are needed. Ensure its UI matches the rounded, premium aesthetic."
+  ]
+}
