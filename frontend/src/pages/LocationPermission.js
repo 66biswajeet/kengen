@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MapPin, PenLine } from "lucide-react";
+import { MapPin, PenLine, Navigation, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 import api, { apiError } from "../lib/api";
 import { useAuth } from "../context/AuthContext";
@@ -29,7 +29,6 @@ export default function LocationPermission() {
         localStorage.setItem("aq_loc", JSON.stringify({ lat: pos.coords.latitude, lng: pos.coords.longitude }));
         toast.success("Location captured");
         setBusy(false);
-        // For clients, save an address for convenience
         if (user?.role === "service_needer") {
           try {
             let city = "Unknown City";
@@ -85,49 +84,89 @@ export default function LocationPermission() {
   };
 
   return (
-    <div className="app-shell" data-testid="location-screen">
-      <div className="px-6 pt-12 pb-8">
-        <div className="w-full h-56 rounded-card bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10 flex items-center justify-center relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="grid grid-cols-8 gap-2 p-4">
-              {Array.from({ length: 48 }).map((_, i) => (
-                <div key={i} className="w-full h-6 bg-primary/40 rounded" />
-              ))}
-            </div>
-          </div>
-          <div className="relative flex flex-col items-center gap-2 z-10">
-            <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center shadow-2xl animate-pulse">
-              <MapPin size={32} className="text-white fill-white/40" />
-            </div>
-            <span className="chip mt-2">Precise pickup point</span>
-          </div>
+    <div
+      className="app-shell relative min-h-screen flex flex-col justify-between"
+      style={{ background: "#F8FAFC" }}
+      data-testid="location-screen"
+    >
+      <div className="px-6 pt-12 pb-8 flex-1 flex flex-col justify-center max-w-sm mx-auto w-full">
+        {/* MapPin Icon Badge */}
+        <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center mb-4 shrink-0">
+          <MapPin size={18} className="text-primary" />
         </div>
 
-        <h1 className="font-display text-3xl font-semibold text-charcoal mt-8">Enable your location</h1>
-        <p className="text-slate mt-2 mb-8">
-          We use your location to {user?.role === "provider" ? "assign nearby jobs" : "find technicians near you"} and to accurately deliver our service.
+        {/* Title & Description */}
+        <h1 className="font-display text-lg font-bold text-charcoal tracking-tight">
+          Enable your location
+        </h1>
+        <p className="text-slate/80 text-xs mt-1 mb-6 leading-relaxed">
+          We use your location to {user?.role === "provider" ? "assign nearby jobs" : "find technicians near you"} and deliver our service accurately.
         </p>
 
         {!manual ? (
           <div className="flex flex-col gap-3">
-            <button onClick={allowGeo} disabled={busy} className="btn-accent" data-testid="allow-loc-btn">
+            <button
+              onClick={allowGeo}
+              disabled={busy}
+              className="w-full bg-primary text-white font-semibold text-xs rounded-xl py-3 px-4 flex items-center justify-center gap-2 shadow-sm hover:bg-primary/95 disabled:opacity-50 active:scale-[0.98] transition-all"
+              data-testid="allow-loc-btn"
+            >
+              <Navigation size={14} className="fill-white/20" />
               {busy ? "Locating..." : "Allow Location Access"}
             </button>
-            <button onClick={() => setManual(true)} className="btn-ghost self-center" data-testid="manual-loc-btn">
-              <PenLine size={14} className="inline mr-1" /> Enter address manually
+            <button
+              onClick={() => setManual(true)}
+              className="text-xs text-slate/70 font-medium hover:text-charcoal self-center py-1 transition-colors flex items-center gap-1"
+              data-testid="manual-loc-btn"
+            >
+              <PenLine size={13} /> Enter address manually
             </button>
           </div>
         ) : (
           <div className="flex flex-col gap-3">
-            <input className="input-field" placeholder="Flat / Building / Street" value={addr.address_line} onChange={(e) => setAddr({ ...addr, address_line: e.target.value })} data-testid="addr-line-input" />
-            <div className="grid grid-cols-2 gap-3">
-              <input className="input-field" placeholder="City" value={addr.city} onChange={(e) => setAddr({ ...addr, city: e.target.value })} data-testid="addr-city-input" />
-              <input className="input-field" placeholder="Pincode" value={addr.pincode} onChange={(e) => setAddr({ ...addr, pincode: e.target.value.replace(/\D/g, "").slice(0, 6) })} data-testid="addr-pincode-input" />
+            <input
+              className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-charcoal placeholder:text-slate/50 font-medium focus:outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 shadow-sm transition-all"
+              placeholder="Flat / Building / Street"
+              value={addr.address_line}
+              onChange={(e) => setAddr({ ...addr, address_line: e.target.value })}
+              data-testid="addr-line-input"
+            />
+            <div className="grid grid-cols-2 gap-2.5">
+              <input
+                className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-charcoal placeholder:text-slate/50 font-medium focus:outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 shadow-sm transition-all"
+                placeholder="City"
+                value={addr.city}
+                onChange={(e) => setAddr({ ...addr, city: e.target.value })}
+                data-testid="addr-city-input"
+              />
+              <input
+                className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-charcoal placeholder:text-slate/50 font-medium focus:outline-none focus:border-primary/40 focus:ring-2 focus:ring-primary/10 shadow-sm transition-all"
+                placeholder="Pincode"
+                value={addr.pincode}
+                onChange={(e) => setAddr({ ...addr, pincode: e.target.value.replace(/\D/g, "").slice(0, 6) })}
+                data-testid="addr-pincode-input"
+              />
             </div>
-            <button className="btn-primary" onClick={saveManual} data-testid="save-manual-loc-btn">Save & Continue</button>
-            <button className="btn-ghost self-center" onClick={() => setManual(false)}>Use location instead</button>
+            <button
+              className="w-full bg-primary text-white font-semibold text-xs rounded-xl py-3 px-4 flex items-center justify-center gap-2 shadow-sm hover:bg-primary/95 active:scale-[0.98] transition-all mt-1"
+              onClick={saveManual}
+              data-testid="save-manual-loc-btn"
+            >
+              Save & Continue <ArrowRight size={14} />
+            </button>
+            <button
+              className="text-xs text-slate/70 font-medium hover:text-charcoal self-center py-1 transition-colors"
+              onClick={() => setManual(false)}
+            >
+              Use GPS location instead
+            </button>
           </div>
         )}
+      </div>
+
+      {/* Footer */}
+      <div className="pb-8 text-[10px] text-slate/60 text-center px-6">
+        By continuing you agree to our <span className="underline cursor-pointer">Terms</span> & <span className="underline cursor-pointer">Privacy Policy</span>.
       </div>
     </div>
   );

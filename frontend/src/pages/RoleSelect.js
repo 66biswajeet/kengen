@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Home, Wrench, ArrowRight, Droplet } from "lucide-react";
+import { Home, Wrench, ArrowRight } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
 export default function RoleSelect() {
@@ -13,59 +13,79 @@ export default function RoleSelect() {
   };
 
   return (
-    <div className="app-shell relative" data-testid="role-select-screen">
-      <div className="px-6 pt-16 pb-8">
-        <div className="flex flex-col items-center text-center gap-3 mb-10">
-          <div className="w-12 h-12 rounded-2xl overflow-hidden shrink-0 flex items-center justify-center">
+    <div
+      className="app-shell relative min-h-screen flex flex-col justify-between"
+      style={{ background: "#F8FAFC" }}
+      data-testid="role-select-screen"
+    >
+      <div className="px-6 pt-12 pb-8 flex-1 flex flex-col justify-center">
+        {/* Header Branding */}
+        <div className="flex flex-col items-center text-center gap-2 mb-8">
+          <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0 flex items-center justify-center bg-white shadow-sm border border-slate-100 p-1.5 mb-1">
             <img src="/logo.png" alt="AquaServe Logo" className="w-full h-full object-contain" />
           </div>
           <div>
-            <div className="text-xs uppercase tracking-[0.2em] text-primary font-semibold">Welcome to</div>
-            <div className="font-display text-2xl font-bold text-charcoal">AquaServe</div>
+            <div className="text-[10px] uppercase tracking-[0.25em] text-primary font-bold">
+              WELCOME TO
+            </div>
+            <div className="font-display text-xl font-bold text-charcoal tracking-tight mt-0.5">
+              AquaServe
+            </div>
           </div>
+          <p className="text-slate/80 text-xs mt-2 max-w-[240px] leading-relaxed">
+            Choose your role. <br />
+            You can change this later by logging out.
+          </p>
         </div>
 
-        {/* <h3 className="font-display text-2xl font-semibold text-charcoal leading-tight">
-          How would you like to continue?
-        </h3> */}
-        <p className="text-slate mt-2 mb-8">Choose your role.<br /> You can  change this later by logging out.</p>
-
-        <div className="flex flex-col gap-8">
+        {/* Role Cards */}
+        <div className="flex flex-col gap-3.5 max-w-sm mx-auto w-full">
+          {/* Client Card */}
           <button
             onClick={() => pick("service_needer")}
-            className="card p-6 flex items-center gap-5 text-left transition-all hover:border-primary/40 hover:shadow-floating group active:scale-[0.99]"
+            className="bg-white rounded-2xl p-4 flex items-center gap-4 text-left border border-slate-100 shadow-sm hover:shadow-md hover:border-primary/30 active:scale-[0.98] transition-all group"
             data-testid="role-client-card"
           >
-            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
-              <Home size={24} strokeWidth={2} className="text-primary group-hover:text-white" />
+            <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+              <Home size={18} strokeWidth={2} className="text-primary group-hover:text-white transition-colors" />
             </div>
-            <div className="flex-1">
-              <div className="font-display font-semibold text-charcoal text-lg">I need a service</div>
-              <div className="text-slate text-sm mt-0.5">Book installation, repair, filter change & AMC</div>
+            <div className="flex-1 min-w-0">
+              <div className="font-display font-semibold text-charcoal text-sm">
+                I need a service
+              </div>
+              <div className="text-slate text-[11px] mt-0.5 leading-snug">
+                Book installation, repair, filter change & AMC
+              </div>
             </div>
-            <ArrowRight size={20} className="text-slate group-hover:text-primary" />
+            <ArrowRight size={15} className="text-slate/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0" />
           </button>
 
+          {/* Provider Card */}
           <button
             onClick={() => pick("provider")}
-            className="card p-6 flex items-center gap-5 text-left transition-all hover:border-accent/40 hover:shadow-floating group active:scale-[0.99]"
+            className="bg-white rounded-2xl p-4 flex items-center gap-4 text-left border border-slate-100 shadow-sm hover:shadow-md hover:border-amber-500/30 active:scale-[0.98] transition-all group"
             data-testid="role-provider-card"
           >
-            <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-white transition-colors">
-              <Wrench size={24} strokeWidth={2} className="text-accent-dark group-hover:text-white" />
+            <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center shrink-0 group-hover:bg-amber-500 group-hover:text-white transition-colors">
+              <Wrench size={18} strokeWidth={2} className="text-amber-700 group-hover:text-white transition-colors" />
             </div>
-            <div className="flex-1">
-              <div className="font-display font-semibold text-charcoal text-lg">I provide service</div>
-              <div className="text-slate text-sm mt-0.5">Get jobs, earn income and grow your business</div>
+            <div className="flex-1 min-w-0">
+              <div className="font-display font-semibold text-charcoal text-sm">
+                I provide service
+              </div>
+              <div className="text-slate text-[11px] mt-0.5 leading-snug">
+                Get jobs, earn income and grow your business
+              </div>
             </div>
-            <ArrowRight size={20} className="text-slate group-hover:text-accent-dark" />
+            <ArrowRight size={15} className="text-slate/40 group-hover:text-amber-600 group-hover:translate-x-0.5 transition-all shrink-0" />
           </button>
         </div>
-
-        <div className="mt-40 text-xs text-slate text-center">
-          By continuing you agree to our Terms & Privacy Policy.
-        </div>
       </div>
-    </div >
+
+      {/* Footer */}
+      <div className="pb-8 text-[10px] text-slate/60 text-center px-6">
+        By continuing you agree to our <span className="underline cursor-pointer">Terms</span> & <span className="underline cursor-pointer">Privacy Policy</span>.
+      </div>
+    </div>
   );
 }
