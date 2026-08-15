@@ -43,7 +43,7 @@ import AdminSettings from "./pages/admin/Settings";
 function ProtectedRoute({ children, allowRoles }) {
   const { user, loading } = useAuth();
   const loc = useLocation();
-  if (loading) return <div className="app-shell flex items-center justify-center"><div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin" /></div>;
+  if (loading) return <div className="app-shell flex items-center justify-center"><img src="/kengen_loading1.gif" alt="Loading..." className="w-16 h-16 object-contain" /></div>;
   const isAdminRoute = loc.pathname.startsWith("/admin");
   if (!user) return <Navigate to={isAdminRoute ? "/admin/login" : "/login"} state={{ from: loc }} replace />;
   if (allowRoles && !allowRoles.includes(user.role)) {

@@ -40,7 +40,7 @@ export default function ServiceDetail() {
     setWish(!wish);
   };
 
-  if (!svc) return <div className="app-shell flex items-center justify-center h-full"><div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin" /></div>;
+  if (!svc) return <div className="app-shell flex items-center justify-center h-full"><img src="/kengen_loading1.gif" alt="Loading..." className="w-16 h-16 object-contain" /></div>;
 
   const included = [
     "Full diagnostic check",

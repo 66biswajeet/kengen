@@ -65,7 +65,7 @@ export default function Bookings() {
       </div>
 
       <div className="px-5 pt-4">
-        {loading && <div className="text-center py-8"><div className="inline-block w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin" /></div>}
+        {loading && <div className="flex justify-center py-8"><img src="/kengen_loading1.gif" alt="Loading..." className="w-16 h-16 object-contain" /></div>}
         {!loading && items.length === 0 && (
           <div className="text-center py-16">
             <div className="w-24 h-24 rounded-full bg-primary-surface mx-auto flex items-center justify-center mb-3"><Calendar size={40} className="text-primary" /></div>

@@ -63,7 +63,7 @@ export default function Checkout() {
     finally { setBusy(false); }
   };
 
-  if (!cart) return <div className="app-shell flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin" /></div>;
+  if (!cart) return <div className="app-shell flex items-center justify-center"><img src="/kengen_loading1.gif" alt="Loading..." className="w-16 h-16 object-contain" /></div>;
 
   return (
     <div className="app-shell pb-32" data-testid="checkout-screen">

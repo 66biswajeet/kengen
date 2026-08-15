@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api, { apiError } from "../../lib/api";
 import { toast } from "sonner";
@@ -87,7 +87,7 @@ export default function BookingDetail() {
     toast.info("Please hand cash to the technician; they'll mark it collected in their app.");
   };
 
-  if (!b) return <div className="app-shell flex items-center justify-center h-full"><div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin" /></div>;
+  if (!b) return <div className="app-shell flex items-center justify-center h-full"><img src="/kengen_loading1.gif" alt="Loading..." className="w-16 h-16 object-contain" /></div>;
 
   const showOtpCard = ["provider_assigned", "on_the_way", "arrived"].includes(b.status) && b.otp_plain_for_client;
 

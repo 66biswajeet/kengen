@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api, { apiError } from "../../lib/api";
 import { toast } from "sonner";
@@ -71,7 +71,7 @@ export default function JobDetail() {
   };
   const confirmUpi = async () => { try { await api.post(`/bookings/${id}/payments/confirm-upi`); toast.success("UPI payment confirmed"); setQr(null); load(); } catch (e) { toast.error(apiError(e)); } };
 
-  if (!b) return <div className="app-shell flex items-center justify-center h-full"><div className="w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin" /></div>;
+  if (!b) return <div className="app-shell flex items-center justify-center h-full"><img src="/kengen_loading1.gif" alt="Loading..." className="w-16 h-16 object-contain" /></div>;
 
   const idx = STATUS_FLOW.indexOf(b.status);
   const nextStatus = idx >= 0 && idx < STATUS_FLOW.length - 1 ? STATUS_FLOW[idx + 1] : null;
