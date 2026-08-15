@@ -5,6 +5,7 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 import InstallPrompt from "./components/InstallPrompt";
 
 import Splash from "./pages/Splash";
+import Branding from "./pages/Branding";
 import RoleSelect from "./pages/RoleSelect";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -69,6 +70,7 @@ export default function App() {
         <InstallPrompt />
         <Routes>
           <Route path="/" element={<Splash />} />
+          <Route path="/branding" element={<Branding />} />
           <Route path="/role" element={<RoleSelect />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

@@ -8,7 +8,7 @@ export default function Splash() {
     const t = setTimeout(() => {
       const token = localStorage.getItem("aq_access_token");
       if (token) nav("/dashboard", { replace: true });
-      else nav("/role", { replace: true });
+      else nav("/branding", { replace: true });
     }, 1500);
     return () => clearTimeout(t);
   }, [nav]);
