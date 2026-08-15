@@ -39,27 +39,65 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // 1. Try loading initial state from localStorage cache
+    const cachedCats = localStorage.getItem("home_categories");
+    const cachedSrvs = localStorage.getItem("home_services");
+    const cachedProvs = localStorage.getItem("home_providers");
+    const cachedBooking = localStorage.getItem("home_active_booking");
+    const cachedAddr = localStorage.getItem("home_address");
+
+    if (cachedCats) setCategories(JSON.parse(cachedCats));
+    if (cachedSrvs) setServices(JSON.parse(cachedSrvs));
+    if (cachedProvs) setProviders(JSON.parse(cachedProvs));
+    if (cachedBooking) setActiveBooking(JSON.parse(cachedBooking));
+    if (cachedAddr) setAddress(JSON.parse(cachedAddr));
+
+    // If we already have cache for essential elements, we don't display initial loading skeleton
+    const hasCache = cachedCats && cachedSrvs && cachedProvs;
+    if (hasCache) {
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
+
+    // 2. Fetch fresh data from backend
     (async () => {
       try {
-        setLoading(true);
         const [c, s, p, b] = await Promise.all([
           api.get("/categories"),
           api.get("/services"),
           api.get("/providers/nearby"),
           api.get("/bookings", { params: { scope: "upcoming" } }),
         ]);
+        
         setCategories(c.data);
         setServices(s.data);
         setProviders(p.data);
-        setActiveBooking((b.data || [])[0] || null);
+        
+        const latestBooking = (b.data || [])[0] || null;
+        setActiveBooking(latestBooking);
+
+        localStorage.setItem("home_categories", JSON.stringify(c.data));
+        localStorage.setItem("home_services", JSON.stringify(s.data));
+        localStorage.setItem("home_providers", JSON.stringify(p.data));
+        localStorage.setItem("home_active_booking", JSON.stringify(latestBooking));
 
         if (user?.role === "service_needer") {
           const addrRes = await api.get("/addresses");
           const defaultAddr = (addrRes.data || []).find((a) => a.is_default) || (addrRes.data || [])[0];
-          if (defaultAddr) setAddress(defaultAddr);
+          if (defaultAddr) {
+            setAddress(defaultAddr);
+            localStorage.setItem("home_address", JSON.stringify(defaultAddr));
+          } else {
+            localStorage.removeItem("home_address");
+            setAddress(null);
+          }
         }
-      } catch (e) { toast.error(apiError(e)); }
-      finally { setLoading(false); }
+      } catch (e) { 
+        toast.error(apiError(e)); 
+      } finally { 
+        setLoading(false); 
+      }
     })();
   }, [user]);
 
