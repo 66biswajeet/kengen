@@ -6,7 +6,7 @@ const {
 const { availabilitySchema } = require('./provider.validation');
 
 async function handleProvidersNearby(req, res, next) {
-  try { res.json(await providersNearbyService()); } catch (e) { next(e); }
+  try { res.json(await providersNearbyService(req.query)); } catch (e) { next(e); }
 }
 
 async function handleToggleAvailability(req, res, next) {

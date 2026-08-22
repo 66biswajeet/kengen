@@ -5,6 +5,7 @@
  */
 const { getDb } = require('../../db/connection');
 const { nowUtc, clean } = require('../../utils/security');
+const { filterProvidersByDistance } = require('../../utils/geo.utils');
 
 function httpError(status, msg) {
   const e = new Error(msg);
@@ -12,23 +13,37 @@ function httpError(status, msg) {
   return e;
 }
 
-async function providersNearbyService() {
+async function providersNearbyService(query = {}) {
   const db = getDb();
+  let clientLat = query.lat != null ? parseFloat(query.lat) : null;
+  let clientLng = query.lng != null ? parseFloat(query.lng) : null;
+
+  if ((clientLat === null || clientLng === null) && query.address_id) {
+    const addr = await db.collection('addresses').findOne({ id: query.address_id });
+    if (addr && addr.latitude != null && addr.longitude != null) {
+      clientLat = parseFloat(addr.latitude);
+      clientLng = parseFloat(addr.longitude);
+    }
+  }
+
   const items = await db.collection('provider_profiles')
     .find({ status: 'approved' })
-    .limit(20)
+    .limit(50)
     .toArray();
-  const out = [];
+
+  const enriched = [];
   for (const p of items) {
     const u = await db.collection('users').findOne({ id: p.user_id });
     if (!u) continue;
-    out.push({
+    enriched.push({
       ...clean({ ...p }),
       name: u.name || 'Technician',
       profile_photo_url: u.profile_photo_url,
     });
   }
-  return out;
+
+  // Filter and sort by distance
+  return filterProvidersByDistance(enriched, clientLat, clientLng);
 }
 
 async function toggleAvailabilityService(body, user) {
