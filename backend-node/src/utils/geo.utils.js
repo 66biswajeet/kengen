@@ -52,9 +52,9 @@ function haversineDistance(lat1, lon1, lat2, lon2) {
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos(toRadians(pLat1)) *
-      Math.cos(toRadians(pLat2)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
+    Math.cos(toRadians(pLat2)) *
+    Math.sin(dLon / 2) *
+    Math.sin(dLon / 2);
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const distance = R * c;
@@ -99,7 +99,7 @@ function filterProvidersByDistance(providers, clientLat, clientLng) {
     }
 
     const dist = haversineDistance(cLat, cLng, pLat, pLng);
-    const radius = parseFloat(prof.service_radius_km) || 10.0;
+    const radius = parseFloat(prof.service_radius_km) || 0.001;
 
     if (dist !== null && dist <= radius) {
       matched.push({
